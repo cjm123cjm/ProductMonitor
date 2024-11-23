@@ -1,0 +1,129 @@
+﻿<Window x:Class="ProductMonitor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProductMonitor"
+        xmlns:vm="clr-namespace:ProductMonitor.ViewModels"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow"
+        Height="650"
+        Width="950">
+    <WindowChrome.WindowChrome>
+        <WindowChrome GlassFrameThickness="0" />
+    </WindowChrome.WindowChrome>
+    <Window.DataContext>
+        <vm:MainWindowViewModel />
+    </Window.DataContext>
+    <Grid>
+        <Grid.Background>
+            <RadialGradientBrush>
+                <GradientStop Color="#ff285173"
+                              Offset="0" />
+                <GradientStop Color="#ff244967"
+                              Offset="0.5" />
+                <GradientStop Color="#ff14273a"
+                              Offset="1" />
+            </RadialGradientBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition />
+            <RowDefinition Height="15" />
+        </Grid.RowDefinitions>
+
+        <!--头部-->
+        <Border BorderThickness="0 0 0 1"
+                BorderBrush="#5518aabd">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Image Source="Resource/Images/Logo.jpg"
+                       Margin="10 7" />
+                <TextBlock Grid.Column="1"
+                           Foreground="White"
+                           VerticalAlignment="Center">
+                    <Run Text="生产监控平台"
+                         FontSize="16" />
+                    <LineBreak />
+                    <Run Text="阻碍你前进的,其实是你自己" />
+                </TextBlock>
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="35" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right"
+                                WindowChrome.IsHitTestVisibleInChrome="True">
+                        <Button Content="&#xe624;"
+                                Style="{StaticResource OperateBtnStyle}"
+                                Click="BtnMin_Click"/>
+                        <Button Content="&#xe600;"
+                                Style="{StaticResource OperateBtnStyle}"
+                                Click="BtnWindowState_Click"/>
+                        <Button Content="&#xe609;"
+                                Background="DarkRed"
+                                Click="BtnClose_Click"
+                                Style="{StaticResource OperateBtnStyle}" />
+                    </StackPanel>
+                    <Border Grid.Row="1"
+                            BorderThickness="0 1"
+                            BorderBrush="#5518aabd">
+                        <Border.Background>
+                            <VisualBrush TileMode="Tile"
+                                         Viewport="0 0 7 7"
+                                         ViewportUnits="Absolute">
+                                <VisualBrush.Visual>
+                                    <Line X1="0"
+                                          Y1="10"
+                                          X2="10"
+                                          Y2="0"
+                                          Stroke="Gray"
+                                          StrokeThickness="1" />
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Border.Background>
+                    </Border>
+                </Grid>
+            </Grid>
+        </Border>
+
+        <!--用户控件-->
+        <ContentControl Grid.Row="1"
+                        x:Name="content"
+                        Content="{Binding MonitorUC}">
+
+        </ContentControl>
+
+        <!--底部-->
+        <Border Grid.Row="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Border>
+                    <Border.Background>
+                        <VisualBrush TileMode="FlipX"
+                                     Viewport="0 0 10 10"
+                                     ViewportUnits="Absolute">
+                            <VisualBrush.Visual>
+                                <Line X1="0"
+                                      Y1="25"
+                                      X2="25"
+                                      Y2="0"
+                                      Stroke="Gray"
+                                      StrokeThickness="1" />
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </Border.Background>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
