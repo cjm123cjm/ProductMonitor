@@ -220,7 +220,8 @@
                     Margin="20,0"
                     Content="配置"
                     Tag="&#xe625;"
-                    Style="{StaticResource btnStyle}" />
+                    Style="{StaticResource btnStyle}"
+                    Command="{Binding ShowSettingCommand,RelativeSource={RelativeSource AncestorType=Window}}" />
         </Grid>
 
         <!--第二行-->

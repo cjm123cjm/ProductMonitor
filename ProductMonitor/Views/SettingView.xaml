@@ -5,11 +5,100 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProductMonitor.Views"
         mc:Ignorable="d"
-        Title="SettingView" Height="450" Width="800">
+        WindowStartupLocation="CenterOwner"
+        Background="Transparent"
+        ResizeMode="NoResize"
+        FontFamily="Microsoft YaHei"
+        Title="SettingView"
+        Height="450"
+        Width="800">
     <WindowChrome.WindowChrome>
         <WindowChrome GlassFrameThickness="-1" />
     </WindowChrome.WindowChrome>
+    <Window.Resources>
+        <Style TargetType="RadioButton">
+            <Setter Property="Background"
+                    Value="Transparent" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border Background="{TemplateBinding Background}"
+                                x:Name="bgBorder"
+                                Height="30">
+                            <ContentPresenter  VerticalAlignment="Center"
+                                               HorizontalAlignment="Left"
+                                               Margin="10 0" />
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked"
+                                     Value="True">
+                                <Setter TargetName="bgBorder"
+                                        Property="Background"
+                                        Value="#18aabd" />
+                                <Setter Property="Foreground"
+                                        Value="White" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver"
+                                     Value="True">
+                                <Setter TargetName="bgBorder"
+                                        Property="Background"
+                                        Value="LightGray" />
+                                <Setter Property="Foreground"
+                                        Value="Black" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="130" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock VerticalAlignment="Center"
+                   Margin="10 0">
+            <Run Text="&#xe625;"
+                 FontFamily="../Resource/Fonts/#iconfont"
+                 FontSize="14" />
+            <Run Text="系统配置信息" />
+            <Run></Run>
+        </TextBlock>
+
+        <Border Grid.Row="1">
+            <StackPanel Margin="5 0">
+                <RadioButton Content="设备清单"
+                             IsChecked="True"
+                             Click="RadioButton_Click" 
+                             Tag="data1"/>
+                <RadioButton Content="环境检测"
+                             Click="RadioButton_Click"
+                             Tag="data2" />
+                <RadioButton Content="设备检测"
+                             Click="RadioButton_Click"
+                             Tag="data3" />
+                <RadioButton Content="配置一"
+                             Click="RadioButton_Click"
+                             Tag="data4" />
+                <RadioButton Content="配置二"
+                             Click="RadioButton_Click"
+                             Tag="data5" />
+            </StackPanel>
+        </Border>
+
+        <ScrollViewer Grid.Column="1"
+                      Grid.Row="1"
+                      VerticalScrollBarVisibility="Hidden">
+            <Frame Source="SettingPage.xaml"
+                   x:Name="frame"
+                   NavigationUIVisibility="Hidden" />
+        </ScrollViewer>
     </Grid>
 </Window>

@@ -1,6 +1,7 @@
 ﻿using ProductMonitor.UserControls;
 using ProductMonitor.ViewModels;
 using ProductMonitor.ViewModels.Base;
+using ProductMonitor.Views;
 using System;
 using System.Windows;
 using System.Windows.Media.Animation;
@@ -119,6 +120,16 @@ namespace ProductMonitor
 
                 storyboard.Begin();
             }
+        }
+
+        /// <summary>
+        /// 弹出设置窗口命令
+        /// </summary>
+        public ObservableCommand ShowSettingCommand => new ObservableCommand(ShowSettingView);
+        void ShowSettingView()
+        {
+            SettingView settingView = new SettingView { Owner = this };
+            settingView.ShowDialog();
         }
     }
 }
